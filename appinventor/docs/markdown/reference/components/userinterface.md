@@ -928,6 +928,10 @@ Users enter passwords in a password text box component, which hides the text tha
 {:id="PasswordTextBox.Hint" .text} *Hint*
 : `PasswordTextBox` hint for the user.
 
+{:id="PasswordTextBox.HintColor" .color} *HintColor*
+: Returns the hint color of the PasswordTextBox as an alpha-red-green-blue
+integer.
+
 {:id="PasswordTextBox.NumbersOnly" .boolean} *NumbersOnly*
 : If true, then this `PasswordTextBox`` accepts only numbers as keyboard input. Numbers can include a
  decimal point and an optional leading minus sign. This applies to keyboard input only. Even
@@ -1486,6 +1490,10 @@ Users enter text in a text box component.
 
 {:id="TextBox.Hint" .text} *Hint*
 : `TextBox` hint for the user.
+
+{:id="TextBox.HintColor" .color} *HintColor*
+: Returns the hint color of the TextBox as an alpha-red-green-blue
+integer.
 
 {:id="TextBox.MultiLine" .boolean} *MultiLine*
 : If true, then this `TextBox` accepts multiple lines of input, which are entered using the

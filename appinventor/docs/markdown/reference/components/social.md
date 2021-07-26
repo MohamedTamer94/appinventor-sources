@@ -226,6 +226,10 @@ An `EmailPicker` is a kind of text box. If the user begins entering the name or 
 {:id="EmailPicker.Hint" .text} *Hint*
 : `EmailPicker` hint for the user.
 
+{:id="EmailPicker.HintColor" .color} *HintColor*
+: Returns the hint color of the EmailPicker as an alpha-red-green-blue
+integer.
+
 {:id="EmailPicker.Text" .text} *Text*
 : The text in the `EmailPicker`, which can be set by the programmer in the Designer or Blocks Editor,
  or it can be entered by the user (unless the [`Enabled`](#EmailPicker.Enabled) property is false).

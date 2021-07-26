@@ -6,8 +6,6 @@
 
 package com.google.appinventor.components.runtime;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import com.google.appinventor.components.annotations.DesignerProperty;
 import com.google.appinventor.components.annotations.IsColor;
 import com.google.appinventor.components.annotations.PropertyCategory;
@@ -21,7 +19,6 @@ import com.google.appinventor.components.runtime.util.EclairUtil;
 import com.google.appinventor.components.runtime.util.TextViewUtil;
 import com.google.appinventor.components.runtime.util.ViewUtil;
 
-//import com.google.appinventor.components.runtime.parameters.BooleanReferenceParameter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
@@ -65,14 +62,17 @@ public abstract class TextBoxBase extends AndroidViewComponent
   // This is our handle on Android's nice 3-d default textbox.
   private Drawable defaultTextBoxDrawable;
 
-  //Whether or not the button is in high contrast mode
+  // Whether or not the button is in high contrast mode
   private boolean isHighContrast = false;
 
-  //Whether or not the button is in big text mode
+  // Whether or not the button is in big text mode
   private boolean isBigText = false;
 
-  //The default text color of the textbox hint, according to theme
+  // The default text color of the textbox hint, according to theme
   private int hintColorDefault;
+
+  // Backing for hint text color
+  private int hintColor;
 
   /**
    * Creates a new TextBoxBase component
@@ -122,10 +122,9 @@ public abstract class TextBoxBase extends AndroidViewComponent
     FontSize(Component.FONT_DEFAULT_SIZE);
     Hint("");
     if (isHighContrast || container.$form().HighContrast()) {
-      view.setHintTextColor(COLOR_YELLOW);
-    }
-    else {
-      view.setHintTextColor(hintColorDefault);
+      HintColor(COLOR_YELLOW);
+    } else {
+      HintColor(hintColorDefault);
     }
 
     Text("");
@@ -576,5 +575,32 @@ public abstract class TextBoxBase extends AndroidViewComponent
   @Override
   public boolean getLargeFont() {
     return isBigText;
+  }
+
+  /**
+   * `%type%` hint color for the user.
+   *
+   * @param color hint RGB color with alpha
+   */
+  @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_COLOR,
+      defaultValue = ComponentConstants.TEXTBOX_HINT_COLOR)
+  @SimpleProperty
+  public void HintColor(int color) {
+    hintColor = color;
+    view.setHintTextColor(color);
+    view.invalidate();
+  }
+
+  /**
+   * Returns the hint color of the %type% as an alpha-red-green-blue
+   * integer.
+   *
+   * @return hint RGB color with alpha
+   */
+  @SimpleProperty(description = "The color for the text. You can choose a color by name the " +
+      "Designer or in the Blocks Editor.")
+  @IsColor
+  public int HintColor() {
+    return hintColor;
   }
 }
